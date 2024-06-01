@@ -101,7 +101,7 @@ private[yarn] class YarnAllocator(
   private val runContainerTogetherFlag = sparkConf.getBoolean("spark.yarn.executor.launchTogether",false)
   //-----------------------------------------------------------
   // private val networkIOHost = sparkConf.get("spark.yarn.executor.io.sshHost")
-  // private val networkIOTime = sparkConf.getInt("spark.yarn.executor.io.time",60) // 需要开另外的服务来获取网速流量数据了 真的浪费时间做无用功
+  // private val networkIOTime = sparkConf.getInt("spark.yarn.executor.io.time",60) // 需要开另外的服务来获取网速流量数据了
   // private val networkValue = sparkConf.get("spark.yarn.executor.io.value","30")
   // private val runExecutorsHostsSet: mutable.Set[String] = mutable.Set()
   //-----------------------------------------------------------
@@ -396,7 +396,6 @@ private[yarn] class YarnAllocator(
    * executors we have currently running and our target number of executors.
    * 新idea：分配完成executors后阻止反复调用  减少cpu轮询空转  这样动态调度会回收executors吗？
    * Visible for testing.
-   * 狗屎腾讯二面面试 绝望... 把握不到要点学习
    */
   def updateResourceRequests(): Unit = {
     val pendingAllocate = getPendingAllocate
